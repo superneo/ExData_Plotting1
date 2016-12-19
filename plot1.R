@@ -1,0 +1,5 @@
+png(file='plot1.png', width = 480, height = 480)
+epc = read.table('household_power_consumption.txt', header=TRUE, sep=";", na.strings = "?")
+epc2 = subset(epc, Date == '1/2/2007' | Date == '2/2/2007')
+with(epc2, hist(Global_active_power, main = "Global Active Power", col="red", xlab = "Global Active Power (kilowatts)", xaxp = c(0, 6, 3), xlim = range(0, 6)))
+dev.off()

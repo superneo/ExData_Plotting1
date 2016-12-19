@@ -1,0 +1,11 @@
+png(file='plot3.png', width = 480, height = 480)
+epc = read.table('household_power_consumption.txt', header=TRUE, sep=";", na.strings = "?")
+epc2 = subset(epc, Date == '1/2/2007' | Date == '2/2/2007')
+epc2$DateTime = paste(epc2$Date, epc2$Time)
+epc2$DateTime = strptime(epc2$DateTime, "%d/%m/%Y %H:%M:%S")
+with(epc2, plot(DateTime, Sub_metering_1, type="l", xlab = "", ylab = "Energy sub metering"))
+with(epc2, lines(DateTime, Sub_metering_2, col = "red"))
+with(epc2, lines(DateTime, Sub_metering_3, col = "blue"))
+legend("topright", lwd = 1, lty = c(1, 1, 1), col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+dev.off()
+
